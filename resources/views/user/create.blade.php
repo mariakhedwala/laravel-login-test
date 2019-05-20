@@ -97,7 +97,7 @@
 
             <div class="form-group">
                 <button id="create-user" type="submit" class="btn btn-primary">
-                    {{ __('submit') }}
+                    {{ $valuebtn = $user->id ? 'update' : 'submit' }}
                 </button>
             </div>
         </form>
