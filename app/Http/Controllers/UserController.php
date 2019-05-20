@@ -43,6 +43,7 @@ class UserController extends Controller
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
+                'password' => ['required', 'min:8', 'max:60'],
             ]);
 
             if ($validated) {
@@ -67,22 +68,11 @@ class UserController extends Controller
             if ($errorCode == '1062') {
                 return redirect()->back()->with('error', 'Email ID already exist');
             } else {
-                return redirect()->back()->with('error', 'Database error');
+                return redirect()->back()->with('error');
             }
         } catch (Exception $e) {
-            return redirect()->back()->with('errors');
+            return redirect()->back()->with('error');
         }
-    }
-
-    /**
-     * Display the specified user.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
     }
 
     /**
@@ -105,7 +95,42 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            $validated = $request->validate([
+                'name' => ['required', 'max:255'],
+                'email' => ['required', 'email', "unique:users,email,$user->id"],
+                'job' => ['nullable', 'string'],
+                'city' => ['nullable', 'string'],
+                'country' => ['nullable', 'string'],
+                'password' => ['required', 'min:8', 'max:60'],
+            ]);
+
+            if ($validated) {
+                $updateUser = $user->editUser($validated);
+
+                if ($updateUser == true) {
+                    $request->session()->flash('success', 'User updated successfully');
+                    return redirect('users');
+                } else {
+                    $request->session()->flash('failure', 'User update failed');
+                    return redirect('users');
+                }
+            } else {
+                return redirect()->route('users.create')->with('error');
+            }
+
+            return redirect('users');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == '1062') {
+                return redirect()->back()->with('error', 'Email ID already exist');
+            } else {
+                return redirect()->back()->with('error');
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('error');
+        }
     }
 
     /**
