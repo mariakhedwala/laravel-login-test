@@ -14,4 +14,15 @@ class Job extends Model
     protected $fillable = [
         'job'
     ];
+
+    /**
+     * Property for retrieving  users
+     *
+     * @return Object containing data of all users 
+     */
+    public function getJobs()
+    {
+        $getJobs = Job::all()->sortByDesc('id');
+        return $getJobs;
+    }
 }

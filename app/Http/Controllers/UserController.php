@@ -28,7 +28,10 @@ class UserController extends Controller
      */
     public function create(User $user, Job $job, Country $country, City $city)
     {
-        return view('user.create', compact('user', 'job', 'country', 'city'));
+        $jobs = $job->getJobs();
+        $cities = $city->getCities();
+        $countries = $country->getCountries();
+        return view('user.create', compact('user', 'jobs', 'countries', 'cities'));
     }
 
     /**
@@ -87,7 +90,10 @@ class UserController extends Controller
      */
     public function edit(User $user, Job $job, Country $country, City $city)
     {
-        return view('user.create', compact('user', 'job', 'country', 'city'));
+        $jobs = $job->getJobs();
+        $cities = $city->getCities();
+        $countries = $country->getCountries();
+        return view('user.create', compact('user', 'jobs', 'countries', 'cities'));
     }
 
     /**
@@ -97,12 +103,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         try {
             $validated = $request->validate([
                 'name' => ['required', 'max:255'],
-                'email' => ['required', 'email', "unique:users,email,$id"],
+                'email' => ['required', 'email', "unique:users,email,$user->id"],
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
@@ -111,7 +117,6 @@ class UserController extends Controller
             ]);
 
             if ($validated) {
-                $user = new User;
                 $updateUser = $user->editUser($validated);
 
                 if ($updateUser == true) {
