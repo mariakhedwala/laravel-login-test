@@ -3,9 +3,9 @@
 @section('content')
 <section class="login">
     <div class="wrapper">
-        @foreach (['success', 'failure'] as $key)
+        @foreach (['success', 'danger'] as $key)
         @if(Session::has($key))
-        <div class="session-msg {{ $key }}">
+        <div class="session-msg alert alert-{{ $key }}">
             <p>{{ Session::get($key) }}</p>
         </div>
         @endif
@@ -34,9 +34,27 @@
                         <td class="count">{{ $count }}</td>
                         <td class="name">{{ $user->name }}</td>
                         <td class="email">{{ $user->email }}</td>
-                        <td class="job">{{ $user->job }}</td>
-                        <td class="city">{{ $user->city }}</td>
-                        <td class="country">{{ $user->country }}</td>
+                        <td class="job">
+                            @if ($user->job)
+                                {{ $user->job }}
+                            @else
+                                -
+                            @endif
+                        </td>
+                        <td class="city">
+                            @if ($user->city)
+                                {{ $user->city }}
+                            @else
+                                -                            
+                            @endif
+                        </td>
+                        <td class="country">
+                            @if ($user->country)
+                                {{ $user->country }}
+                            @else
+                                -                            
+                            @endif
+                        </td>
                         <td class="action">
                             <a class="btn btn-primary edit" href="/users/{{ $user->id }}/edit"
                                 title="Edit">{{ __('edit') }}</a>

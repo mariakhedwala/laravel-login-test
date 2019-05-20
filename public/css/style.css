@@ -56,3 +56,7 @@ button {
     padding: 30px;
     margin: 0 auto;
 }
+
+.session-msg p {
+    margin: 0;
+}
