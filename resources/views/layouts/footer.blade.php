@@ -6,6 +6,11 @@
     <!-- Datatables plugin script -->
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
+    <script>
+    $('.session-msg').delay(2000).fadeOut('slow', function () {
+        $.getJSON('/clear/session');
+    });
+    </script>
     </body>
 
     </html>
