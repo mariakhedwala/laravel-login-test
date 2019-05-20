@@ -14,4 +14,15 @@ class Country extends Model
     protected $fillable = [
         'country'
     ];
+
+    /**
+     * Property for retrieving  users
+     *
+     * @return Object containing data of all users 
+     */
+    public function getCountries()
+    {
+        $getCountries = Country::all()->sortByDesc('id');
+        return $getCountries;
+    }
 }
