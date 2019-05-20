@@ -15,7 +15,7 @@
             <a class="btn btn-primary" href="{{ url('/users/create') }}">{{ __('new contact') }}</a>
         </div>
         <div class="table-responsive">
-            <table class="table" cellspacing="0" id="listing_table">
+            <table class="table table-striped" cellspacing="0" id="listing_table">
                 <thead>
                     <tr>
                         <th>{{ __('ID') }}</th>
@@ -31,20 +31,20 @@
                     @php $count = 1; @endphp
                     @foreach ($users as $user)
                     <tr>
-                        <td>{{ $count }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->job }}</td>
-                        <td>{{ $user->city }}</td>
-                        <td>{{ $user->country }}</td>
-                        <td>
+                        <td class="count">{{ $count }}</td>
+                        <td class="name">{{ $user->name }}</td>
+                        <td class="email">{{ $user->email }}</td>
+                        <td class="job">{{ $user->job }}</td>
+                        <td class="city">{{ $user->city }}</td>
+                        <td class="country">{{ $user->country }}</td>
+                        <td class="action">
                             <a class="btn btn-primary edit" href="/users/{{ $user->id }}/edit"
                                 title="Edit">{{ __('edit') }}</a>
                             <form action="/users/{{ $user->id }}" method="POST" class="delete">
                                 @method('DELETE')
                                 @csrf
 
-                                <button type="submit">{{ __('delete') }}</button>
+                                <button class="btn btn-danger" type="submit">{{ __('delete') }}</button>
                             </form>
                         </td>
                     </tr>

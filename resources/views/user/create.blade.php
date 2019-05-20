@@ -39,9 +39,9 @@
                 <div class="form-group__job">
                     <input id="job" type="text" class="form-control{{ $errors->has('job') ? ' is-invalid' : '' }}"
                         name="job" value="{{ old('job') }}" autofocus="true">
-                    @if ($errors->has('job'))
-                    <div class="err visible"><?php echo $errors->first('job'); ?></div>
-                    @endif
+                    @error('job')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -51,9 +51,10 @@
                 <div class="form-group__city">
                     <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
                         name="city" value="{{ old('city') }}" autofocus="true">
-                    @if ($errors->has('city'))
-                    <div class="err visible"><?php echo $errors->first('city'); ?></div>
-                    @endif
+
+                    @error('city')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -64,9 +65,10 @@
                     <input id="country" type="text"
                         class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country"
                         value="{{ old('country') }}" autofocus="true">
-                    @if ($errors->has('country'))
-                    <div class="err visible"><?php echo $errors->first('country'); ?></div>
-                    @endif
+
+                    @error('country')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -74,12 +76,11 @@
                 <label for="password">{{ __('password') }}</label>
 
                 <div class="form-group__password">
-                    <input id="password" type="password" class="form-control" name="password">
-                    <div class="error-field err">
-                    </div>
-                    @if ($errors->has('password'))
-                    <div class="err visible"><?php echo $errors->first('password'); ?></div>
-                    @endif
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
+    
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -87,15 +88,15 @@
                 <label for="confirmPassword">{{ __('confirm password') }}</label>
 
                 <div class="form-group__password">
-                    <input id="confirmPassword" type="password" class="form-control" name="confirmPassword">
-                    @if ($errors->has('confirmPassword'))
-                    <div class="err visible"><?php echo $errors->first('confirmPassword'); ?></div>
-                    @endif
+                    <input id="confirmPassword" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="confirmPassword">
+                    @error('confirmPassword')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
             <div class="form-group">
-                <button id="create-user" type="submit" class="form-group__create">
+                <button id="create-user" type="submit" class="btn btn-primary">
                     {{ __('submit') }}
                 </button>
             </div>

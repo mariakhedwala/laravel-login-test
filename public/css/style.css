@@ -1,11 +1,17 @@
+.wrapper {
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .login {
     width: 100%;
     padding: 30px;
 }
 
-.login h2 {
-    margin-bottom: 20px;
-    font-size: 46px;
+h2 {
+    margin-bottom: 20px !important;
+    font-size: 46px !important;
 }
 
 .create-new a {
@@ -17,6 +23,36 @@
     width: 100%;
 }
 
-.login table tr th {
+.login table tr th,
+.login table td:not(.email) {
     text-transform: capitalize;
+}
+
+.login table tr .action {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.login table tr form {
+    margin: 0 0 0 30px;
+}
+
+.login tr button,
+.login tr a,
+label,
+button {
+    text-transform: capitalize !important;
+}
+
+.table th,
+.table td {
+    vertical-align: middle !important;
+}
+
+.create {
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    margin: 0 auto;
 }
