@@ -36,23 +36,23 @@
                         <td class="email">{{ $user->email }}</td>
                         <td class="job">
                             @if ($user->job)
-                                {{ $user->job }}
+                            {{ $user->job }}
                             @else
-                                -
+                            -
                             @endif
                         </td>
                         <td class="city">
                             @if ($user->city)
-                                {{ $user->city }}
+                            {{ $user->city }}
                             @else
-                                -                            
+                            -
                             @endif
                         </td>
                         <td class="country">
                             @if ($user->country)
-                                {{ $user->country }}
+                            {{ $user->country }}
                             @else
-                                -                            
+                            -
                             @endif
                         </td>
                         <td class="action">
