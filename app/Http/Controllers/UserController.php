@@ -43,7 +43,8 @@ class UserController extends Controller
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
-                'password' => ['required', 'min:8', 'max:60'],
+                'password' => ['required', 'confirmed', 'min:8', 'max:60'],
+                'password_confirmation' => ['required', 'min:8'],
             ]);
 
             if ($validated) {
@@ -102,7 +103,8 @@ class UserController extends Controller
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
-                'password' => ['required', 'min:8', 'max:60'],
+                'password' => ['required', 'confirmed', 'min:8', 'max:60'],
+                'password_confirmation' => ['required', 'min:8'],
             ]);
 
             if ($validated) {
@@ -139,9 +141,17 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
         $delete = $user->delete();
+
+        if ($delete) {
+            $request->session()->flash('success', 'User updated successfully');
+            return redirect('users');
+        } else {
+            $request->session()->flash('failure', 'User delete failed');
+            return redirect('users');
+        }
 
         return redirect('users');
     }
