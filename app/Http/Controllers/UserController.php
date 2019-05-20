@@ -52,10 +52,10 @@ class UserController extends Controller
                 $createUser = $createUser->createUsers($validated);
 
                 if ($createUser) {
-                    $request->session()->flash('success', 'User created successfully');
+                    $request->session()->flash('success', 'Contact created');
                     return redirect('users');
                 } else {
-                    $request->session()->flash('danger', 'User creation failed');
+                    $request->session()->flash('danger', 'Contact creation failed');
                     return redirect()->route('users.create');
                 }
             } else {
@@ -111,10 +111,10 @@ class UserController extends Controller
                 $updateUser = $user->editUser($validated);
 
                 if ($updateUser == true) {
-                    $request->session()->flash('success', 'User updated successfully');
+                    $request->session()->flash('success', 'Contact updated');
                     return redirect('users');
                 } else {
-                    $request->session()->flash('danger', 'User update failed');
+                    $request->session()->flash('danger', 'Contact update failed');
                     return redirect('users');
                 }
             } else {
@@ -146,10 +146,10 @@ class UserController extends Controller
         $delete = $user->delete();
 
         if ($delete) {
-            $request->session()->flash('success', 'User deleted successfully');
+            $request->session()->flash('success', 'Contact deleted');
             return redirect('users');
         } else {
-            $request->session()->flash('danger', 'User delete failed');
+            $request->session()->flash('danger', 'Contact delete failed');
             return redirect('users');
         }
 
