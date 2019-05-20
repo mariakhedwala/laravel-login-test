@@ -88,8 +88,8 @@
                 <label for="confirmPassword">{{ __('confirm password') }}</label>
 
                 <div class="form-group__password">
-                    <input id="confirmPassword" type="password" class="form-control{{ $errors->has('confirmPassword') ? ' is-invalid' : '' }}" name="confirmPassword" autofocus="true">
-                    @error('confirmPassword')
+                    <input id="confirmPassword" type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" autofocus="true">
+                    @error('password_confirmation')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
