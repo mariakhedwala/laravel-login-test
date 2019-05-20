@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -69,6 +70,7 @@ class User extends Authenticatable
      */
     public function editUser($validated)
     {
+        $validated['password'] = Hash::make($validated['password']);
         $updateUser = User::update($validated);
         return $updateUser;
     }
