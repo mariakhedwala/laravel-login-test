@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Job;
+use App\Country;
+use App\City;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -23,9 +26,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(User $user)
+    public function create(User $user, Job $job, Country $country, City $city)
     {
-        return view('user.create', compact('user'));
+        return view('user.create', compact('user', 'job', 'country', 'city'));
     }
 
     /**
@@ -82,9 +85,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user, Job $job, Country $country, City $city)
     {
-        return view('user.create', compact('user'));
+        return view('user.create', compact('user', 'job', 'country', 'city'));
     }
 
     /**
