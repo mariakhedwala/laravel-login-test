@@ -36,4 +36,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Property for retrieving  users
+     *
+     * @return Object containing data of all users 
+     */
+    public function getUsers()
+    {
+        $getUser = User::all()->sortByDesc('id');
+        return $getUser;
+    }
+
+    /**
+     * Property to create users.
+     *
+     * @param  $validated
+     * @return User created
+     */
+    public function createUsers($validated)
+    {
+        $validated['password'] = Hash::make($validated['password']);
+        $createdUser = User::create($validated);
+        return $createdUser;
+    }
+
+    /**
+     * Property to edit user
+     *
+     * @param  $validated
+     * @return User updated
+     */
+    public function editUser($validated)
+    {
+        $updateUser = User::update($validated);
+        return $updateUser;
+    }
 }
