@@ -55,7 +55,7 @@ class UserController extends Controller
                     $request->session()->flash('success', 'User created successfully');
                     return redirect('users');
                 } else {
-                    $request->session()->flash('failure', 'User creation failed');
+                    $request->session()->flash('danger', 'User creation failed');
                     return redirect()->route('users.create');
                 }
             } else {
@@ -67,7 +67,7 @@ class UserController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == '1062') {
-                return redirect()->back()->with('error', 'Email ID already exist');
+                return redirect()->back()->withErrors(['email', 'Email ID already exist']);
             } else {
                 return redirect()->back()->with('error');
             }
@@ -114,7 +114,7 @@ class UserController extends Controller
                     $request->session()->flash('success', 'User updated successfully');
                     return redirect('users');
                 } else {
-                    $request->session()->flash('failure', 'User update failed');
+                    $request->session()->flash('danger', 'User update failed');
                     return redirect('users');
                 }
             } else {
@@ -126,7 +126,7 @@ class UserController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == '1062') {
-                return redirect()->back()->with('error', 'Email ID already exist');
+                return redirect()->back()->withErrors(['email', 'Email ID already exist']);
             } else {
                 return redirect()->back()->with('error');
             }
@@ -146,10 +146,10 @@ class UserController extends Controller
         $delete = $user->delete();
 
         if ($delete) {
-            $request->session()->flash('success', 'User updated successfully');
+            $request->session()->flash('success', 'User deleted successfully');
             return redirect('users');
         } else {
-            $request->session()->flash('failure', 'User delete failed');
+            $request->session()->flash('danger', 'User delete failed');
             return redirect('users');
         }
 
