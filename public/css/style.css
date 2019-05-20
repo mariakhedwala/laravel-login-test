@@ -1,0 +1,22 @@
+.login {
+    width: 100%;
+    padding: 30px;
+}
+
+.login h2 {
+    margin-bottom: 20px;
+    font-size: 46px;
+}
+
+.create-new a {
+    margin: 0 10px 20px;
+    text-transform: capitalize;
+}
+
+.login table {
+    width: 100%;
+}
+
+.login table tr th {
+    text-transform: capitalize;
+}

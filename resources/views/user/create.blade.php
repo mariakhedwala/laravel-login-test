@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="login">
+<section class="create">
     <div class="wrapper">
         <h2>Register here</h2>
-        <form method="POST" action="" id="login" novalidate autocomplete="off">
+        <form method="POST" action="{{ $action = $user->id ? "/users/$user->id" : "/users" }}" id="login" novalidate autocomplete="off">
             @method($method = $user->id ? 'PATCH' : 'POST')
             @csrf
             <div class="form-group">
@@ -13,7 +13,10 @@
                 <div class="form-group__name">
                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                         name="name" value="{{ old('name') }}" autofocus="true">
-                    <div class="error-field err"></div>
+                    
+                    @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -23,7 +26,10 @@
                 <div class="form-group__email">
                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                         name="email" value="{{ old('email') }}" autofocus="true">
-                    <div class="error-field err"></div>
+                    
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -33,7 +39,9 @@
                 <div class="form-group__job">
                     <input id="job" type="text" class="form-control{{ $errors->has('job') ? ' is-invalid' : '' }}"
                         name="job" value="{{ old('job') }}" autofocus="true">
-                    <div class="error-field err"></div>
+                    @if ($errors->has('job'))
+                    <div class="err visible"><?php echo $errors->first('job'); ?></div>
+                    @endif
                 </div>
             </div>
 
@@ -43,7 +51,9 @@
                 <div class="form-group__city">
                     <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
                         name="city" value="{{ old('city') }}" autofocus="true">
-                    <div class="error-field err"></div>
+                    @if ($errors->has('city'))
+                    <div class="err visible"><?php echo $errors->first('city'); ?></div>
+                    @endif
                 </div>
             </div>
 
@@ -54,7 +64,9 @@
                     <input id="country" type="text"
                         class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country"
                         value="{{ old('country') }}" autofocus="true">
-                    <div class="error-field err"></div>
+                    @if ($errors->has('country'))
+                    <div class="err visible"><?php echo $errors->first('country'); ?></div>
+                    @endif
                 </div>
             </div>
 
@@ -76,19 +88,17 @@
 
                 <div class="form-group__password">
                     <input id="confirmPassword" type="password" class="form-control" name="confirmPassword">
-                    <div class="error-field err">
-                    </div>
+                    @if ($errors->has('confirmPassword'))
+                    <div class="err visible"><?php echo $errors->first('confirmPassword'); ?></div>
+                    @endif
                 </div>
             </div>
-        </form>
-        @if ($errors->any())
-            <div>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+
+            <div class="form-group">
+                <button id="create-user" type="submit" class="form-group__create">
+                    {{ __('submit') }}
+                </button>
             </div>
-        @endif
+        </form>
     </div>
 </section>
