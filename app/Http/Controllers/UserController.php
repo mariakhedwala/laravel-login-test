@@ -67,7 +67,7 @@ class UserController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == '1062') {
-                return redirect()->back()->withErrors(['email', 'Email ID already exist']);
+                return redirect()->back()->withErrors(['email' => 'Email ID already exist']);
             } else {
                 return redirect()->back()->with('error');
             }
@@ -126,7 +126,7 @@ class UserController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == '1062') {
-                return redirect()->back()->withErrors(['email', 'Email ID already exist']);
+                return redirect()->back()->withErrors(['email' => 'Email ID already exist']);
             } else {
                 return redirect()->back()->with('error');
             }
