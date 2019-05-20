@@ -52,10 +52,10 @@ class UserController extends Controller
                 $createUser = $createUser->createUsers($validated);
 
                 if ($createUser) {
-                    $request->session()->flash('success', 'User created successfully');
+                    $request->session()->flash('success', 'Contact created');
                     return redirect('users');
                 } else {
-                    $request->session()->flash('danger', 'User creation failed');
+                    $request->session()->flash('danger', 'Contact creation failed');
                     return redirect()->route('users.create');
                 }
             } else {
@@ -94,12 +94,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         try {
             $validated = $request->validate([
                 'name' => ['required', 'max:255'],
-                'email' => ['required', 'email', "unique:users,email,$user->id"],
+                'email' => ['required', 'email', "unique:users,email,$id"],
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
@@ -108,13 +108,14 @@ class UserController extends Controller
             ]);
 
             if ($validated) {
+                $user = new User;
                 $updateUser = $user->editUser($validated);
 
                 if ($updateUser == true) {
-                    $request->session()->flash('success', 'User updated successfully');
+                    $request->session()->flash('success', 'Contact updated');
                     return redirect('users');
                 } else {
-                    $request->session()->flash('danger', 'User update failed');
+                    $request->session()->flash('danger', 'Contact update failed');
                     return redirect('users');
                 }
             } else {
@@ -146,10 +147,10 @@ class UserController extends Controller
         $delete = $user->delete();
 
         if ($delete) {
-            $request->session()->flash('success', 'User deleted successfully');
+            $request->session()->flash('success', 'Contact deleted');
             return redirect('users');
         } else {
-            $request->session()->flash('danger', 'User delete failed');
+            $request->session()->flash('danger', 'Contact delete failed');
             return redirect('users');
         }
 

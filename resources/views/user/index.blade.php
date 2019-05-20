@@ -38,21 +38,21 @@
                             @if ($user->job)
                             {{ $user->job }}
                             @else
-                            -
+                            {{ __('-') }}
                             @endif
                         </td>
                         <td class="city">
                             @if ($user->city)
                             {{ $user->city }}
                             @else
-                            -
+                            {{ __('-') }}
                             @endif
                         </td>
                         <td class="country">
                             @if ($user->country)
                             {{ $user->country }}
                             @else
-                            -
+                            {{ __('-') }}
                             @endif
                         </td>
                         <td class="action">
