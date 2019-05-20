@@ -8,6 +8,7 @@
 package-lock.json
 .env
 .phpunit.result.cache
+package-lock.json
 Homestead.json
 Homestead.yaml
 npm-debug.log
