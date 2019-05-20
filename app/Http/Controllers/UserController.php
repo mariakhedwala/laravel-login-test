@@ -94,12 +94,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         try {
             $validated = $request->validate([
                 'name' => ['required', 'max:255'],
-                'email' => ['required', 'email', "unique:users,email,$user->id"],
+                'email' => ['required', 'email', "unique:users,email,$id"],
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
@@ -108,6 +108,7 @@ class UserController extends Controller
             ]);
 
             if ($validated) {
+                $user = new User;
                 $updateUser = $user->editUser($validated);
 
                 if ($updateUser == true) {

@@ -8,8 +8,8 @@
         </h2>
         <form method="POST" action="{{ $action = $user->id ? "/users/$user->id" : "/users" }}" id="login" novalidate
             autocomplete="off">
-            @method($method = $user->id ? 'PATCH' : 'POST')
             @csrf
+            @method($method = $user->id ? 'PATCH' : 'POST')
             <div class="form-group">
                 <label for="name">{{ __('name') }}</label>
 
