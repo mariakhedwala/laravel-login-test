@@ -70,7 +70,6 @@ class User extends Authenticatable
      */
     public function editUser($validated)
     {
-        $validated['password'] = Hash::make($validated['password']);
         $updateUser = User::update($validated);
         return $updateUser;
     }
