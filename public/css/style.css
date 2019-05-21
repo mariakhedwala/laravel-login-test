@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-.login {
+.contacts {
     width: 100%;
     padding: 30px;
 }
@@ -20,27 +20,27 @@ h2 {
     text-transform: capitalize;
 }
 
-.login table {
+.contacts table {
     width: 100%;
 }
 
-.login table tr th,
-.login table td:not(.email) {
+.contacts table tr th,
+.contacts table td:not(.email) {
     text-transform: capitalize;
 }
 
-.login table tr .action {
+.contacts table tr .action {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.login table tr form {
+.contacts table tr form {
     margin: 0 0 0 30px;
 }
 
-.login tr button,
-.login tr a,
+.contacts tr button,
+.contacts tr a,
 label,
 button {
     text-transform: capitalize !important;

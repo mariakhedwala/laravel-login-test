@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="login">
+<section class="contacts">
     <div class="wrapper">
         @foreach (['success', 'danger'] as $key)
         @if(Session::has($key))
@@ -73,3 +73,4 @@
         </div>
     </div>
 </section>
+@endsection
