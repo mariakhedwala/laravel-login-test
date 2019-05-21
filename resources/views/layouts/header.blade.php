@@ -15,7 +15,6 @@
     <title>{{ env('app.name', 'Login system') }}</title>
     <!-- Main style file -->
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
