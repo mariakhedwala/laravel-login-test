@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ env('app.name', 'Login system') }}</title>
+    <title>{{ env('app.name', 'Test') }}</title>
     <!-- Main style file -->
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
 </head>
