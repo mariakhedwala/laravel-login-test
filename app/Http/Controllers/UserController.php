@@ -52,7 +52,9 @@ class UserController extends Controller
                 'password' => ['required', 'confirmed', 'min:8', 'max:60'],
                 'password_confirmation' => ['required', 'min:8'],
             ]);
-
+            $validated['name'] = strtolower($validated['name']);
+            $validated['email'] = strtolower($validated['email']);
+            
             if ($validated) {
                 $createUser = new User;
                 $createUser = $createUser->createUsers($validated);
@@ -116,6 +118,8 @@ class UserController extends Controller
                 'password' => ['nullable', 'confirmed', 'min:8', 'max:60'],
                 'password_confirmation' => ['nullable', 'min:8'],
             ]);
+            $validated['name'] = strtolower($validated['name']);
+            $validated['email'] = strtolower($validated['email']);
 
             $user = User::findOrFail($id);
             $newPassword = $request->get('password');
