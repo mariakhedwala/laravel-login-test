@@ -22,7 +22,7 @@ class City extends Model
      */
     public function getCities()
     {
-        $getCities = Job::all()->sortByDesc('id');
+        $getCities = City::all()->sortByDesc('id');
         return $getCities;
     }
 }
