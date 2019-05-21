@@ -57,7 +57,7 @@
 
                 <div class="form-group__city">
                     <select name="city" id="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" autofocus="true">
-                        <option selected value="{{ $city = $user->id ? $user->city : old('city') }}">{{ $city = $user->id ? $user->job : old('job') }}</option>
+                        <option selected value="{{ $city = $user->id ? $user->city : old('city') }}">{{ $city = $user->id ? $user->city : old('city') }}</option>
                         @foreach ($cities as $city)
                             <option value="{{ $city->city }}">{{ $city->city }}</option>
                         @endforeach
@@ -74,7 +74,7 @@
 
                 <div class="form-group__country">
                     <select name="country" id="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" autofocus="true">
-                        <option selected value="{{ $country = $user->id ? $user->country : old('country') }}">{{ $country = $user->id ? $user->job : old('job') }}</option>
+                        <option selected value="{{ $country = $user->id ? $user->country : old('country') }}">{{ $country = $user->id ? $user->country : old('country') }}</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->country }}">{{ $country->country }}</option>
                         @endforeach
