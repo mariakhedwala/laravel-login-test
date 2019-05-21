@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Job;
-use App\Country;
 use App\City;
+use App\Country;
+use App\Job;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -103,14 +103,13 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $id = (int) $id;
         try {
-            $current_password = $user->password;
-
             $validated = $request->validate([
                 'name' => ['required', 'max:255'],
-                'email' => ['required', 'email', "unique:users,email,$user->id"],
+                'email' => ['required', 'email', "unique:users,email,$id"],
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
@@ -118,14 +117,15 @@ class UserController extends Controller
                 'password_confirmation' => ['nullable', 'min:8'],
             ]);
 
-            if (!$validated['password']) {
-                $validated['password'] = $current_password;
-            } else {
-                $validated['password'] = Hash::make($validated['password']);
-            }
+            $user = User::findOrFail($id);
+            $newPassword = $request->get('password');
 
             if ($validated) {
-                $updateUser = $user->editUser($validated);
+                if (empty($newPassword)) {
+                    $updateUser = $user->update($request->except('password'));
+                } else {
+                    $updateUser = $user->editUser($validated);
+                }
 
                 if ($updateUser == true) {
                     $request->session()->flash('success', 'Contact updated');

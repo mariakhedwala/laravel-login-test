@@ -42,8 +42,8 @@
                 <div class="form-group__job">
                     <select name="job" id="job" class="form-control{{ $errors->has('job') ? ' is-invalid' : '' }}"
                         autofocus="true">
-                        <option selected value="{{ $job = $user->id ? $user->job : 'Select job' }}">
-                            {{ $job = $user->id ? $user->job : 'Select job' }}</option>
+                        <option selected value="{{ $job = $user->id ? $user->job : old('job') }}">
+                            {{ $job = $user->job ? $user->job : 'Select job' }}</option>
                         @foreach ($jobs as $job)
                         <option value="{{ $job->job }}">{{ $job->job }}</option>
                         @endforeach
@@ -60,8 +60,8 @@
                 <div class="form-group__city">
                     <select name="city" id="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
                         autofocus="true">
-                        <option selected value="{{ $city = $user->id ? $user->city : 'Select city' }}">
-                            {{ $city = $user->id ? $user->city : 'Select city' }}</option>
+                        <option selected value="{{ $city = $user->id ? $user->city : old('city') }}">
+                            {{ $city = $user->city ? $user->city : 'Select city' }}</option>
                         @foreach ($cities as $city)
                         <option value="{{ $city->city }}">{{ $city->city }}</option>
                         @endforeach
@@ -79,8 +79,8 @@
                 <div class="form-group__country">
                     <select name="country" id="country"
                         class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" autofocus="true">
-                        <option selected value="{{ $country = $user->id ? $user->country : 'Select country' }}">
-                            {{ $country = $user->id ? $user->country : 'Select country' }}</option>
+                        <option selected value="{{ $country = $user->id ? $user->country : old('country') }}">
+                            {{ $country = $user->country ? $user->country : 'Select country' }}</option>
                         @foreach ($countries as $country)
                         <option value="{{ $country->country }}">{{ $country->country }}</option>
                         @endforeach
