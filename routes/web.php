@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::permanentRedirect('/', '/users');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::resource('users', 'UserController');
