@@ -100,15 +100,23 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         try {
+            $current_password = $user->password;
+
             $validated = $request->validate([
                 'name' => ['required', 'max:255'],
                 'email' => ['required', 'email', "unique:users,email,$user->id"],
                 'job' => ['nullable', 'string'],
                 'city' => ['nullable', 'string'],
                 'country' => ['nullable', 'string'],
-                'password' => ['required', 'confirmed', 'min:8', 'max:60'],
-                'password_confirmation' => ['required', 'min:8'],
+                'password' => ['nullable', 'confirmed', 'min:8', 'max:60'],
+                'password_confirmation' => ['nullable', 'min:8'],
             ]);
+
+            if (!$validated['password']) {
+                $validated['password'] = $current_password;
+            } else {
+                $validated['password'] = Hash::make($validated['password']);
+            }
 
             if ($validated) {
                 $updateUser = $user->editUser($validated);
