@@ -10,7 +10,7 @@
         </div>
         @endif
         @endforeach
-        <h2>Contacts</h2>
+        <h2>{{ __('Contacts') }}</h2>
         <div class="create-new">
             <a class="btn btn-primary" href="{{ url('/users/create') }}">{{ __('new contact') }}</a>
         </div>

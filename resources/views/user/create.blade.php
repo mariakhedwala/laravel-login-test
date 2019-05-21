@@ -40,10 +40,12 @@
                 <label for="job">{{ __('job title') }}</label>
 
                 <div class="form-group__job">
-                    <select name="job" id="job" class="form-control{{ $errors->has('job') ? ' is-invalid' : '' }}" autofocus="true">
-                        <option selected value="{{ $job = $user->id ? $user->job : old('job') }}">{{ $job = $user->id ? $user->job : old('job') }}</option>
+                    <select name="job" id="job" class="form-control{{ $errors->has('job') ? ' is-invalid' : '' }}"
+                        autofocus="true">
+                        <option selected value="{{ $job = $user->id ? $user->job : 'Select job' }}">
+                            {{ $job = $user->id ? $user->job : 'Select job' }}</option>
                         @foreach ($jobs as $job)
-                            <option value="{{ $job->job }}">{{ $job->job }}</option>
+                        <option value="{{ $job->job }}">{{ $job->job }}</option>
                         @endforeach
                     </select>
                     @error('job')
@@ -56,10 +58,12 @@
                 <label for="city">{{ __('city') }}</label>
 
                 <div class="form-group__city">
-                    <select name="city" id="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" autofocus="true">
-                        <option selected value="{{ $city = $user->id ? $user->city : old('city') }}">{{ $city = $user->id ? $user->city : old('city') }}</option>
+                    <select name="city" id="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
+                        autofocus="true">
+                        <option selected value="{{ $city = $user->id ? $user->city : 'Select city' }}">
+                            {{ $city = $user->id ? $user->city : 'Select city' }}</option>
                         @foreach ($cities as $city)
-                            <option value="{{ $city->city }}">{{ $city->city }}</option>
+                        <option value="{{ $city->city }}">{{ $city->city }}</option>
                         @endforeach
                     </select>
 
@@ -73,10 +77,12 @@
                 <label for="country">{{ __('country') }}</label>
 
                 <div class="form-group__country">
-                    <select name="country" id="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" autofocus="true">
-                        <option selected value="{{ $country = $user->id ? $user->country : old('country') }}">{{ $country = $user->id ? $user->country : old('country') }}</option>
+                    <select name="country" id="country"
+                        class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" autofocus="true">
+                        <option selected value="{{ $country = $user->id ? $user->country : 'Select country' }}">
+                            {{ $country = $user->id ? $user->country : 'Select country' }}</option>
                         @foreach ($countries as $country)
-                            <option value="{{ $country->country }}">{{ $country->country }}</option>
+                        <option value="{{ $country->country }}">{{ $country->country }}</option>
                         @endforeach
                     </select>
                     @error('country')
