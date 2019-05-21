@@ -14,4 +14,15 @@ class City extends Model
     protected $fillable = [
         'city'
     ];
+
+    /**
+     * Property for retrieving  users
+     *
+     * @return Object containing data of all users 
+     */
+    public function getCities()
+    {
+        $getCities = City::all()->sortByDesc('id');
+        return $getCities;
+    }
 }
