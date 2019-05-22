@@ -6,6 +6,9 @@
         <h2>
             {{ $h2value = $user->id ? 'update here' : 'register here' }}
         </h2>
+        <p class="back">
+            <a href="{{ url('/users') }}" class="btn btn-primary">{{ __('back') }}</a>
+        </p>
         <form method="POST" action="{{ $action = $user->id ? "/users/$user->id" : "/users" }}" id="login" novalidate
             autocomplete="off">
             @csrf
