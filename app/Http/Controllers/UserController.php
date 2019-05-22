@@ -119,10 +119,13 @@ class UserController extends Controller
 
             $user = User::findOrFail($id);
             $newPassword = $request->get('password');
+            $newConfirmPassword = $request->get('password_confirmation');
 
             if ($validated) {
-                if (empty($newPassword)) {
+                if (empty($newPassword) && empty($newConfirmPassword)) {
                     $updateUser = $user->update($request->except('password'));
+                } else if(empty($newPassword) && !empty($newConfirmPassword)) {
+                    return redirect()->back()->withErrors(['password' => 'Please enter the password']);
                 } else {
                     $updateUser = $user->editUser($validated);
                 }
